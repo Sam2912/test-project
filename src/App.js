@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { useSpeechRecognition } from "react-speech-kit";
 
 function App() {
+  const [text, setText] = useState();
+
+  const { listen, stop } = useSpeechRecognition({
+    onResult: (result) => setText(result),
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Converting the Speech to Text...</h2>
+      <textarea value={text}></textarea>
+      <p>
+        <button onClick={listen}>Listen</button>
+        <button onClick={stop}>Stop</button>
+      </p>
     </div>
   );
 }
