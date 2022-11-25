@@ -58,9 +58,13 @@ function LogIn(props) {
 }
 
 function Home(props) {
+  let navigate = useNavigate();
+
   function onNext() {
-    props.history.replace("/editprofile");
+    navigate("/editprofile");
+    //navigate("/editprofile", { replace: true });
   }
+
   return (
     <div>
       <h2>Welcome to Home...</h2>
